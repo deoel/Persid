@@ -6,7 +6,7 @@ import time, random
 from coord_xy_xy import Coord_XY_XY
 from ennemi import Ennemi
 import os
-
+ 
 WIDTH = 450
 HEIGHT = 500
 FONT = "Comic Sans MS"
@@ -31,6 +31,7 @@ class Game:
         self.points = 0
         self.game_over = True
         self.id_text_game_over = None
+        self.creer_fichier_score()
         self.creer_fenetre()
         self.creer_canvas_game()
         self.dessiner_carre_jeu()
@@ -259,7 +260,14 @@ class Game:
             score = 0
             with open(path_file, 'w') as f:
                 f.write(str(new_meilleur_score))
-            
+
+    def creer_fichier_score(self):
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        path_file = os.path.join(dir_path, 'score.txt')
+        if not os.path.exists(path_file):
+            with open(path_file, 'w+') as f:
+                f.write(str(300))
+                            
 
 if __name__ == '__main__':   
     
